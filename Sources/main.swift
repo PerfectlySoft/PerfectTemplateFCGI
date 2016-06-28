@@ -25,8 +25,7 @@ PerfectServer.initializeServices()
 
 Routing.Routes["/**"] = {
     req, resp in
-    let path = req.path
-    resp.appendBody(string: "Req path: \(path)")
+    resp.appendBody(string: "<html><title>Hello, world!</title><body>Hello, world!</body></html>")
     resp.completed()
 }
 
@@ -34,6 +33,8 @@ do {
     // Launch the FastCGI server
     // The path to the sock file must point to a directory one level up from the site's document root.
     // The file must be called "perfect.fastcgi.sock"
+    // For example, the following path would suffice for a server whose document root is:
+    // /Library/WebServer/VirtualHosts/wwwroot/
     try FastCGIServer().start(namedPipe: "/Library/WebServer/VirtualHosts/perfect.fastcgi.sock")
 } catch {
     print("Error thrown: \(error)")
