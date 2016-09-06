@@ -17,17 +17,18 @@
 //===----------------------------------------------------------------------===//
 //
 
-import PerfectLib
 import PerfectFastCGI
+import PerfectHTTP
 
-// Initialize base-level services
-PerfectServer.initializeServices()
-
-Routing.Routes["/**"] = {
+var routes = Routes()
+routes.add(method: .get, uri: "/**") {
     req, resp in
     resp.appendBody(string: "<html><title>Hello, world!</title><body>Hello, world!</body></html>")
     resp.completed()
 }
+
+let server = FastCGIServer()
+server.addRoutes(routes)
 
 do {
     // Launch the FastCGI server

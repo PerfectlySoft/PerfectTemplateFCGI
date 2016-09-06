@@ -1,6 +1,6 @@
 //
 //  Package.swift
-//  PerfectTemplate
+//  PerfectTemplateFCGI
 //
 //  Created by Kyle Jessup on 4/20/16.
 //	Copyright (C) 2016 PerfectlySoft, Inc.
@@ -23,6 +23,7 @@ let package = Package(
 	name: "PerfectTemplateFCGI",
 	targets: [],
 	dependencies: [
-	                  .Package(url:"https://github.com/PerfectlySoft/Perfect-FastCGI.git", versions: Version(0,0,0)..<Version(10,0,0))
+		.Package(url:"https://github.com/PerfectlySoft/Perfect-FastCGI.git", majorVersion: 2, minor: 0),
+		.Package(url:"https://github.com/PerfectlySoft/Perfect-HTTP.git", majorVersion: 2, minor: 0)
     ]
 )
