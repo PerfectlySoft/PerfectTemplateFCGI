@@ -1,4 +1,4 @@
-# PerfectTemplateFCGI [简体中文](README.zh_CN.md)
+# PerfectTemplateFCGI [English](README.zh_CN.md)
 
 <p align="center">
     <a href="http://perfect.org/get-involved.html" target="_blank">
@@ -39,41 +39,41 @@
     </a>
 </p>
 
-Perfect Empty Starter FastCGI Project
+Perfect 软件框架 FastCGI 空白项目模板
 
-This repository holds a blank Perfect project which can be cloned to serve as a starter for new work. It builds with Swift Package Manager and produces a FastCGI based server executable.
+本项目包括了一个空白的HTTP服务器，采用SPM软件包管理器编译，编译后能够生成一个基于 FastCGI 的可执行服务器。
 
-## Issues
+## 问题报告、内容贡献和客户支持
 
-We are transitioning to using JIRA for all bugs and support related issues, therefore the GitHub issues has been disabled.
+我们目前正在过渡到使用JIRA来处理所有源代码资源合并申请、修复漏洞以及其它有关问题。因此，GitHub 的“issues”问题报告功能已经被禁用了。
 
-If you find a mistake, bug, or any other helpful suggestion you'd like to make on the docs please head over to [http://jira.perfect.org:8080/servicedesk/customer/portal/1](http://jira.perfect.org:8080/servicedesk/customer/portal/1) and raise it.
+如果您发现了问题，或者希望为改进本文提供意见和建议，[请在这里指出](http://jira.perfect.org:8080/servicedesk/customer/portal/1).
 
-A comprehensive list of open issues can be found at [http://jira.perfect.org:8080/projects/ISS/issues](http://jira.perfect.org:8080/projects/ISS/issues)
+在您开始之前，请参阅[目前待解决的问题清单](http://jira.perfect.org:8080/projects/ISS/issues).
 
 =====
 
-**The master branch of this project currently compiles with *DEVELOPMENT-SNAPSHOT-2016-06-20-a* released June 20th, 2016 using Swift Package Manager.**
+** ⚠️目前本资源采用 Swift *DEVELOPMENT-SNAPSHOT-2016-06-20-a* 快照版本编译，采用SPM软件包管理器。⚠️**
 
-Ensure that you have installed the few dependencies which Perfect requires for your platform:
+请确认您的平台上已经安装了相关依存关系：
 
 [Dependencies](https://github.com/PerfectlySoft/Perfect/wiki/Dependencies)
 
-This server can run with any FastCGI enabled webserver over either UNIX socket files or TCP.
+编译后，本服务器能够与任何 FastCGI 服务器共同工作，可以使用 Unix套接字文件或TCP。
 
-## Apache 24
-To run with Apache 2.4, build and install the mod_perfect FastCGI module:
+## Apache 2.4
+如果您希望使用 Apache 2.4，请参考一下内容安装和运行mod_perfect FastCGI 模块：
 
 [Perfect-FastCGI-Apache2.4](https://github.com/PerfectlySoft/Perfect-FastCGI-Apache2.4)
 
 ## NGINX
-Instructions for running with NGINX:
+请参考下列内容安装 NGINX 并进行相关配置：
 
 [NGINX](https://github.com/PerfectlySoft/Perfect/wiki/NGINX)
 
-## Building & Running
+## 编译和运行：
 
-The following will clone and build an empty starter project and launch the server.
+以下代码展示了如何创建空白项目并运行：
 
 ```
 git clone https://github.com/PerfectlySoft/PerfectTemplateFCGI.git
@@ -82,45 +82,45 @@ swift build
 .build/debug/PerfectTemplateFCGI
 ```
 
-You should see the following output:
+您应该能看到如下输出信息：
 
 ```
 Starting FastCGI server on named pipe /Library/WebServer/VirtualHosts/perfect.fastcgi.sock
 ```
 
-This means the server is running and waiting for connections.
+这意味这服务器已经准备好并且等待连接，
 
-## Starter Content
+## 示范网页
 
-The template file contains a very simple "hello, world!" example. Note that you must install mod_perfect or otherwise configure your web server for FastCGI and change the namedPipe path such that it points one level above your server's document root.
+以下代码包括了一个非常简单的“你好，世界！”例子。请注意您必须为 FastCGI 安装 mod_perfect 模块，并改变命名管道使之指向服务器文档根目录。
 
 ```swift
 import PerfectLib
 import PerfectFastCGI
 
-// Initialize base-level services
+// 初始化基础服务
 PerfectServer.initializeServices()
 
 Routing.Routes["/**"] = {
     req, resp in
     let path = req.path
-    resp.appendBody(string: "<html><title>Hello, world!</title><body>Hello, world!</body></html>")
+    resp.appendBody(string: "<html><meta http-equiv=Content-Type content="text/html;charset=utf-8"><title>祝贺</title><body>你好，世界！</body></html>")
     resp.completed()
 }
 
 do {
-    // Launch the FastCGI server
-    // The path to the sock file must point to a directory one level up from the site's document root.
-    // The file must be called "perfect.fastcgi.sock"
-    // For example, the following path would suffice for a server whose document root is:
+    // 启动 FastCGI 服务器
+    // 指向套接字文件的路径必须指向文档根目录上一层文件夹。
+    // 文件名必须是 "perfect.fastcgi.sock"
+    // 比如，以下路径会指向的文档根目录是：
     // /Library/WebServer/VirtualHosts/wwwroot/
     try FastCGIServer().start(namedPipe: "/Library/WebServer/VirtualHosts/perfect.fastcgi.sock")
 } catch {
-    print("Error thrown: \(error)")
+    print("发生错误： \(error)")
 }
 ```
 
 
 
-## Further Information
-For more information on the Perfect project, please visit [perfect.org](http://perfect.org).
+## 更多信息
+详细信息请参考 Perfect 项目，详见官网[perfect.org](http://perfect.org).
