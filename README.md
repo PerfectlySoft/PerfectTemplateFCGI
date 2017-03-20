@@ -95,18 +95,18 @@ This means the server is running and waiting for connections.
 The template file contains a very simple "hello, world!" example. Note that you must install mod_perfect or otherwise configure your web server for FastCGI and change the namedPipe path such that it points one level above your server's document root.
 
 ```swift
-import PerfectLib
 import PerfectFastCGI
+import PerfectHTTP
 
-// Initialize base-level services
-PerfectServer.initializeServices()
-
-Routing.Routes["/**"] = {
+var routes = Routes()
+routes.add(method: .get, uri: "/**") {
     req, resp in
-    let path = req.path
     resp.appendBody(string: "<html><title>Hello, world!</title><body>Hello, world!</body></html>")
     resp.completed()
 }
+
+let server = FastCGIServer()
+server.addRoutes(routes)
 
 do {
     // Launch the FastCGI server
@@ -114,7 +114,7 @@ do {
     // The file must be called "perfect.fastcgi.sock"
     // For example, the following path would suffice for a server whose document root is:
     // /Library/WebServer/VirtualHosts/wwwroot/
-    try FastCGIServer().start(namedPipe: "/Library/WebServer/VirtualHosts/perfect.fastcgi.sock")
+    try server.start(namedPipe: "/Library/WebServer/VirtualHosts/perfect.fastcgi.sock")
 } catch {
     print("Error thrown: \(error)")
 }

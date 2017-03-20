@@ -36,7 +36,7 @@ do {
     // The file must be called "perfect.fastcgi.sock"
     // For example, the following path would suffice for a server whose document root is:
     // /Library/WebServer/VirtualHosts/wwwroot/
-    try FastCGIServer().start(namedPipe: "/Library/WebServer/VirtualHosts/perfect.fastcgi.sock")
+    try server.start(namedPipe: "/Library/WebServer/VirtualHosts/perfect.fastcgi.sock")
 } catch {
     print("Error thrown: \(error)")
 }
