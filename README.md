@@ -43,22 +43,6 @@ Perfect Empty Starter FastCGI Project
 
 This repository holds a blank Perfect project which can be cloned to serve as a starter for new work. It builds with Swift Package Manager and produces a FastCGI based server executable.
 
-## Issues
-
-We are transitioning to using JIRA for all bugs and support related issues, therefore the GitHub issues has been disabled.
-
-If you find a mistake, bug, or any other helpful suggestion you'd like to make on the docs please head over to [http://jira.perfect.org:8080/servicedesk/customer/portal/1](http://jira.perfect.org:8080/servicedesk/customer/portal/1) and raise it.
-
-A comprehensive list of open issues can be found at [http://jira.perfect.org:8080/projects/ISS/issues](http://jira.perfect.org:8080/projects/ISS/issues)
-
-=====
-
-**The master branch of this project currently compiles with *DEVELOPMENT-SNAPSHOT-2016-06-20-a* released June 20th, 2016 using Swift Package Manager.**
-
-Ensure that you have installed the few dependencies which Perfect requires for your platform:
-
-[Dependencies](https://github.com/PerfectlySoft/Perfect/wiki/Dependencies)
-
 This server can run with any FastCGI enabled webserver over either UNIX socket files or TCP.
 
 ## Apache 24
@@ -119,8 +103,6 @@ do {
     print("Error thrown: \(error)")
 }
 ```
-
-
 
 ## Further Information
 For more information on the Perfect project, please visit [perfect.org](http://perfect.org).
